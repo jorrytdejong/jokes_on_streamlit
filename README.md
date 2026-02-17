@@ -13,6 +13,15 @@ If no database URL is set, the app automatically uses local SQLite.
 pip install -r requirements.txt
 ```
 
+## OpenAI setup (required for joke generation)
+Set:
+- `OPENAI_API_KEY`
+- optional `OPENAI_MODEL` (default: `gpt-4o-mini`)
+
+You can put these in:
+- `.streamlit/secrets.toml`
+- environment variables
+
 ## Run locally
 ```bash
 streamlit run Home.py
@@ -36,5 +45,5 @@ You can add this in:
 - `Home.py`: overview and template guide
 - `pages/1_Generate_Joke.py`: generate + save jokes
 - `pages/2_Joke_Library.py`: search, browse, and export CSV
-- `app/joke_engine.py`: joke template logic
+- `app/joke_engine.py`: OpenAI prompt + few-shot joke generation
 - `app/database.py`: SQLAlchemy storage layer (SQLite/Supabase)

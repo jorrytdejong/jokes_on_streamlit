@@ -46,7 +46,12 @@ if submitted:
     if not user_input.strip():
         st.error("Add some input text first.")
     else:
-        generated = generate_joke(selected_template_key, user_input, add_on)
+        try:
+            generated = generate_joke(selected_template_key, user_input, add_on)
+        except RuntimeError as error:
+            st.error(str(error))
+            st.stop()
+
         template_name = get_template(selected_template_key).name
         try:
             joke_id = save_joke(
